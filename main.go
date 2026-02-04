@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -31,8 +33,9 @@ func main() {
 		}
 		switch action {
 		case "add":
-			fmt.Scan(&change)
-			addTodo(change)
+			read := bufio.NewReader(os.Stdin)
+			change, _ := read.ReadString('\n')
+			addTodo(strings.TrimSpace(change))
 			fmt.Print("Task added !")
 		case "rm":
 			fmt.Scan(&change)
